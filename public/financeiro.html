@@ -50,7 +50,7 @@
 							<tr>
 								
 								<th>
-									{Mês}
+									Mês: {{mesParam}}
 								</th>
 								<th>
 									Descrição
@@ -88,18 +88,23 @@
 								#
 								</td>
 								<td>
-								Futuros
+								Totais do Mês
 								</td>
 								<td>
-								{R$00,00}
+								{{retornaMes}}
 								</td>
 							</tr>
 						</tbody>
 					</table>
-					 <h4 class="text-right">Valor Final<small> {R$00,00}</small> </h4>
+					 
+
+					Informe o mês desejado: <input type="text" ng-model="mesParam"></input> <button ng-click="retornaMes(form, mesParam)"> Aqui</button>
+					</br></br></br>
 					<a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
-					<a ng-click="retornaMes(form)" class="glyphicon glyphicon-wrench"></a>	
 					<a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>	
+					</br></br></br></br>
+					<h4 class="text-right">Valor Final<small> {R$00,00}</small> </h4>
+{{retornaMes}}
 					<!-- Modal funcionando kkkkk-->
 <div class="container-fluid">
 	<div class="row">
@@ -115,7 +120,7 @@
 								×
 							</button>
 							<h4 class="modal-title" id="myModalLabel">
-								Relatorio Mês {{Abril}}{{2016}}
+								Relatorio 
 							</h4>
 						</div>
 						<div class="modal-body">
@@ -186,8 +191,6 @@
 <button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
 </div>
 
-
-
 <script src="angular/angular.min.js">
 </script>
 <script src="angular/locale.js"></script>
@@ -197,5 +200,7 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <!-- Include all compiled plugins (below), or include individual files as needed -->
  <script src="bootstrap3/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

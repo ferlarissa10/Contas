@@ -7,6 +7,8 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 	$scope.totalEntrada = 0;
 	$scope.totalSaida = 0;
 
+	
+	$scope.mesAtual = moment().format("MMMM");
 	$scope.form = [{
 		data: "15/05/2016",
 		descricao: "Album Fotos",
@@ -66,26 +68,23 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 			})
  	};
 
- 	$scope.retornaMes = function(form, mesParam){
 
+
+ 	$scope.retornaMes = function(form, mesParam){
 
 /* 		var mesMoment = moment("01/06/2016", 'DD/MM/YYYY');
  		console.log(mesMoment.month());
-
  		console.log(form[1].data);
-
  		console.log(moment(form[1].data, 'DD/MM/YYYY').month() === mesParam);
 		console.log(mesParam);
-
 		var mesTitulo = moment(form[1].data, 'DD/MM/YYYY').month();
-
 		console.log(moment(form[1].data, 'DD/MM/YYYY').month() == mesParam);
-
 		console.log(form.length);*/
 
  		var total = 0, tamanhoArray = form.length;
  		for (var i = 0; i < tamanhoArray; i++){
  			if(moment(form[i].data, 'DD/MM/YYYY').month() == mesParam){
+ 				
  				total += Number(form[i].valor)
  			}
  	 	}
