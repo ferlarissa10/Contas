@@ -69,7 +69,7 @@
 								Entradas
 								</td>
 								<td>
-								{R$00,00}
+								{{totalEntrada | currency}}
 								</td>
 							</tr>
 							<tr >
@@ -80,7 +80,7 @@
 								Saidas
 								</td>
 								<td>
-								{R$00,00}
+								{{totalSaida | currency}}
 								</td>
 							</tr>
 							<tr >
@@ -98,7 +98,7 @@
 					</table>
 					 <h4 class="text-right">Valor Final<small> {R$00,00}</small> </h4>
 					<a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
-					<a ng-click="somarEntrada(form)" class="glyphicon glyphicon-wrench"></a>	
+					<a ng-click="retornaMes(form)" class="glyphicon glyphicon-wrench"></a>	
 					<a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>	
 					<!-- Modal funcionando kkkkk-->
 <div class="container-fluid">
@@ -183,68 +183,16 @@
 	</div>
 </div>
 
+<button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
 </div>
+
 
 
 <script src="angular/angular.min.js">
 </script>
 <script src="angular/locale.js"></script>
-<script type="text/javascript">
-	var app=angular.module('appContas',[]);
-	app.controller ('appContasCrtl', ['$scope', function($scope){
-		$scope.form = [{
-			data: "15/05/2016",
-			descricao: "Album Fotos",
-			valor: 115,
-			categoria: false
-		},{
-			data: "15/06/2016",
-			descricao: "Album Fotos",
-			valor: 115,
-			categoria: false
-		},{
-			data: "10/05/2016",
-			descricao: "Pagamento",
-			valor: 1000,
-			categoria: true
-		}];
-
-		$scope.salvar = function(data, descricao, valor, categoria){
-			$scope.form.push({data: data, descricao: descricao, valor: valor, categoria: categoria});
-			
-		};
-		$scope.excluirConta = function(form){
-			$scope.form= form.filter(function(formulario){
-				if (!formulario.selecionado) return formulario;
-				})
-	 	};
-	
-	 	$scope.somarSaida = function(form){
-	 		var total = 0, tamanhoArray = $scope.form.length;
-	 		for (var i = 0; i < tamanhoArray; i++) {
-	 			if(!$scope.form[i].categoria) {
-	 				total += $scope.form[i].valor;
-	 			}
-	 		}
-	 		console.log(total);
-	 		return total;
-	 	};
-
-	 	$scope.somarEntrada = function(form){
-	 		var total = 0, tamanhoArray = $scope.form.length;
-	 		for (var i = 0; i < tamanhoArray; i++) {
-	 			if($scope.form[i].categoria) {
-	 				total += $scope.form[i].valor;
-	 			}
-	 		}
-	 		console.log(total);
-	 		return total;
-	 	};
-	 
-}])
-
-
-</script>
+<script src="js/moment.js"></script>
+<script src="js/app.js"></script>
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
  <!-- Include all compiled plugins (below), or include individual files as needed -->
