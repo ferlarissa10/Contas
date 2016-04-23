@@ -1,0 +1,19 @@
+{
+  "name": "projects",
+  "version": "1.0.0",
+  "description": "Projeto realizado em conjuneto com Fernanda S2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fernanda",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "consign": "^0.1.2",
+    "express": "^4.13.3",
+    "mysql": "^2.10.2",
+    "sequelize": "^3.19.3",
+    "validator": "^4.1.0"
+  }
+}
