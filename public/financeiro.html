@@ -50,13 +50,18 @@
 							<tr>
 								
 								<th>
-									Mês: {{mesParam}}
+								 {{mesParam}}
+
 								</th>
 								<th>
 									Descrição
+
 								</th>
 								<th>
-									Totais
+									Entradas
+								</th>
+								<th>
+									Saidas
 								</th>
 							</tr>
 						</thead>
@@ -66,10 +71,13 @@
 								#
 								</td>
 								<td>
-								Entradas
+								Entradas 	<!--Totais de todas as entradas lancadas -->
 								</td>
 								<td>
 								{{totalEntrada | currency}}
+								</td>
+								<td>
+								
 								</td>
 							</tr>
 							<tr >
@@ -80,25 +88,44 @@
 								Saidas
 								</td>
 								<td>
+								
+								</td>
+								<td>
 								{{totalSaida | currency}}
 								</td>
 							</tr>
-							<tr >
+							<tr class="success">
 								<td>
 								#
 								</td>
 								<td>
-								Totais do Mês
+								Saldo Atual:
+								</td>
+								<td >
+								{{retornaMes}}
 								</td>
 								<td>
-								{{retornaMes}}
+								
 								</td>
 							</tr>
 						</tbody>
 					</table>
-					 
+					Mês: <select  class="form-control" ng-model="mesParam" id="mesParam">
+					<option value="0">Janeiro</option>
+					<option value="1">Fevereiro</option>
+					<option value="2">Março</option>
+					<option value="3">Abril</option>
+					<option value="4">Maio</option>
+					<option value="5">Junho</option>
+					<option value="6">Julho</option>
+					<option value="7">Agosto</option>
+					<option value="8">Setembro</option>
+					<option value="9">Outubro</option>
+					<option value="10">Novembro</option>
+					<option value="11">Dezembro</option>
+					</select>
 
-					Informe o mês desejado: <input type="text" ng-model="mesParam"></input> <button ng-click="retornaMes(form, mesParam)"> Aqui</button>
+					<button ng-click="retornaMes(form, mesParam)"> Aqui</button>
 					</br></br></br>
 					<a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
 					<a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>	
