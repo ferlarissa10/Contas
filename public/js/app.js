@@ -10,8 +10,10 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 	$scope.totalSaida = 0;
 
 	$scope.mesParam = moment().format("MMMM");
-	
 	$scope.mesAtual = moment().format("MMMM");
+
+	$scope.dataDiaria = moment().format("LLLL");
+
 	$scope.form = [{
 		data: "15/05/2016",
 		descricao: "Album Fotos",

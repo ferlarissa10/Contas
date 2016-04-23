@@ -110,7 +110,7 @@
 							</tr>
 						</tbody>
 					</table>
-					Mês: <select  class="form-control" ng-model="mesParam" id="mesParam">
+					Mês: <select   ng-model="mesParam" id="mesParam">
 					<option value="0">Janeiro</option>
 					<option value="1">Fevereiro</option>
 					<option value="2">Março</option>
@@ -144,14 +144,44 @@
 						<div class="modal-header">
 							 
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								×
+								
 							</button>
 							<h4 class="modal-title" id="myModalLabel">
 								Relatorio 
 							</h4>
 						</div>
 						<div class="modal-body">
-							<table class="table">
+						<!-- corpo modal-->
+						</div>
+						<div class="modal-footer">
+							 
+							<button type="button" class="btn btn-default" data-dismiss="modal">
+								Fechar
+							</button> 
+							<button type="button" class="btn btn-primary">
+								Imprimir
+								<!-- ver como fazer uma versao em pdf :) -->
+							</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+</div>
+<!-- Fim do Modal-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
+
+						<table class="table">
 						<thead>
 							<tr>
 								<th>
@@ -188,34 +218,6 @@
 							</tr>
 						</tbody>
 					</table>
-						</div>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Fechar
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Imprimir
-								<!-- ver como fazer uma versao em pdf :) -->
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-		</div>
-	</div>
-</div>
-<!-- Fim do Modal-->
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
 </div>
 
 <script src="angular/angular.min.js">
