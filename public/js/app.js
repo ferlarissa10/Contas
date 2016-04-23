@@ -12,7 +12,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 	$scope.mesParam = moment().format("MMMM");
 	$scope.mesAtual = moment().format("MMMM");
 
-	$scope.dataDiaria = moment().format("LLLL");
+	$scope.dataDiaria = moment().format("LL");
 
 	$scope.form = [{
 		data: "15/05/2016",
