@@ -74,9 +74,10 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
  	};
 
 
-
+	/* funcao para retornar a entrada de determinado mês*/
  	$scope.retornaMes = function(form, mesParam){
- 		/* 		
+ 		/*
+ 		funcao para retornar as saidas
 		var mesMoment = moment("01/06/2016", 'DD/MM/YYYY');
  		console.log(mesMoment.month());
  		console.log(form[1].data);
@@ -97,6 +98,19 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 		return total
  	}
 
+	/* funcao para retornar a entrada de determinado mês*/
+	$scope.retornaMesEntrada = function(form, mesParam){
+		var total = 0, tamanhoArray = form.length;
+		for (var i=0; i < tamanhoArray; i++){
+			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesParam) && (form[i].categoria)){
+
+				total += Number(form[i].valor)
+			}
+		}
+		console.log(total);
+		return total;
+
+	}
 
 
 }])

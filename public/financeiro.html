@@ -15,7 +15,7 @@
 <div class="container-fluid" ng-controller="appContasCrtl">
 			<div class="page-header">
 				<h1>
-					Cadernetinha <small>Controle das contas da Fernandinha</small>
+					Cadernetinha <small>Controle Financeiro</small>
 				</h1>
 			</div>
 <div class="container-fluid">
@@ -60,10 +60,7 @@
 
 								</th>
 								<th>
-									Entradas
-								</th>
-								<th>
-									Saidas
+									Valores
 								</th>
 							</tr>
 						</thead>
@@ -89,9 +86,7 @@
 								<td>
 								Saidas
 								</td>
-								<td>
-								
-								</td>
+
 								<td>
 								{{totalSaida | currency}}
 								</td>
@@ -112,7 +107,7 @@
 							</tr>
 						</tbody>
 					</table>
-					Mês: <select   ng-model="mesParam" id="mesParam">
+					Mês: <select ng-model="mesParam" id="mesParam">
 					<option value="0">Janeiro</option>
 					<option value="1">Fevereiro</option>
 					<option value="2">Março</option>
@@ -129,49 +124,10 @@
 
 					<button ng-click="retornaMes(form, mesParam)"> Aqui</button>
 					</br></br></br>
-					
-	
-					<!-- Modal funcionando kkkkk-->
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			 <a id="modal-254539" href="#modal-container-254539" role="button" class="btn" data-toggle="modal">Relatorio Mensal</a>
-			
-			<div class="modal fade" id="modal-container-254539" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							 
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-								
-							</button>
-							<h4 class="modal-title" id="myModalLabel">
-								Relatorio 
-							</h4>
-						</div>
-						<div class="modal-body">
-						<!-- corpo modal-->
-						</div>
-						<div class="modal-footer">
-							 
-							<button type="button" class="btn btn-default" data-dismiss="modal">
-								Fechar
-							</button> 
-							<button type="button" class="btn btn-primary">
-								Imprimir
-								<!-- ver como fazer uma versao em pdf :) -->
-							</button>
-						</div>
-					</div>
-					
-				</div>
-				
-			</div>
-			
-		</div>
-	</div>
-</div>
-<!-- Fim do Modal-->
+					<button ng-click="retornaMesEntrada(form, mesParam)"> here</button>
+					</br></br></br>
+
+
 				</div>
 			</div>
 		</div>
@@ -219,6 +175,49 @@
 					</table>
 					<a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
 					<a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>
+
+	<!-- Modal funcionando kkkkk-->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<a id="modal-254539" href="#modal-container-254539" role="button" class="btn" data-toggle="modal">Relatorio Mensal</a>
+
+				<div class="modal fade" id="modal-container-254539" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+
+								</button>
+								<h4 class="modal-title" id="myModalLabel">
+									Relatorio
+								</h4>
+							</div>
+							<div class="modal-body">
+								<!-- corpo modal-->
+							</div>
+							<div class="modal-footer">
+
+								<button type="button" class="btn btn-default" data-dismiss="modal">
+									Fechar
+								</button>
+								<button type="button" class="btn btn-primary">
+									Imprimir
+									<!-- ver como fazer uma versao em pdf :) -->
+								</button>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Fim do Modal-->
+
 </div>
 
 <script src="angular/angular.min.js">
