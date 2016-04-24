@@ -1,3 +1,5 @@
+<!--resuminho do mes já mostrar todas as datas do mes atual.
+filter angular: selecionar o mes e mostrar somente o movimento deste mes-->
 <!DOCTYPE html>
 <html ng-app="appContas">
 <meta charset="utf8" />
@@ -36,7 +38,8 @@
                                 <br>
                                 {{categoria}}
                                 </br>
-                                <a ng-click="salvar(data, descricao, valor, categoria)" > <span class="glyphicon glyphicon-plus-sign"></span></a></label>
+                                <button ng-click="salvar(data, descricao, valor, categoria)" class="btn btn-success">Salvar
+                                </button></label>
 
                         </form>
                         </label>
@@ -74,7 +77,7 @@
                                     Entradas 	<!--Totais de todas as entradas lancadas -->
                                 </td>
                                 <td>
-                                    {{totalEntrada | currency}}
+                                    {{totalEntradaAtual | currency}}
                                 </td>
                                 <td>
 
@@ -89,7 +92,7 @@
                                 </td>
 
                                 <td>
-                                    {{totalSaida | currency}}
+                                    {{totalSaidaAtual | currency}}
                                 </td>
                             </tr>
                             <tr class="success">
@@ -100,7 +103,7 @@
                                     Saldo Atual:
                                 </td>
                                 <td >
-                                    Somar as entradas do mês atual
+                                    Somar as entradas do mês atual{{valorAtual}}
                                 </td>
                                 <td>
 
@@ -167,7 +170,7 @@
                             Lançamentos
                         </h3>Busque o
                         <!--Menu para selecionar o mes para  -->
-                        Mês: <select ng-model="mesParam" id="mesParam">
+                        Mês: <select ng-model="mesParam" id="mesParam" class="form-control">
                         <option value="0">Janeiro</option>
                         <option value="1">Fevereiro</option>
                         <option value="2">Março</option>
@@ -181,12 +184,13 @@
                         <option value="10">Novembro</option>
                         <option value="11">Dezembro</option>
                     </select>
-                        <button ng-click=""> Buscar</button>
-                        <button ng-click="retornaMes(form, mesParam)"> Saidas</button>
-                        Saidas:{{totalMesSaida | currency}}
-                        <button ng-click="retornaMesEntrada(form, mesParam)"> Entradas</button>
-                        Entradas: {{totalMesEntrada | currency}}
+                        <br>
+                        <button ng-click="" class="btn btn-default"> Buscar</button>
+                        <button ng-click="retornaMes(form, mesParam)" class="btn btn-default"> Saidas</button>
 
+                        <button ng-click="retornaMesEntrada(form, mesParam)" class="btn btn-default"> Entradas</button>
+                        Entradas: {{totalMesEntrada | currency}}
+                        Saidas:{{totalMesSaida | currency}}
 
                         <!--fim do menu -->
                     </div>
@@ -228,8 +232,8 @@
                             </tr>
                             </tbody>
                         </table>
-                        <a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
-                        <a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>
+                        <button ng-click="excluirConta(form)" class="btn btn-danger">Excluir</button>
+
 
 
                     </div>
@@ -254,4 +258,3 @@
 
 </body>
 </html>
-Status

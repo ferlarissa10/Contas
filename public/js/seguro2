@@ -54,8 +54,9 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 				total += Number(form[i].valor);
 			}
 		}
-		$scope.totalEntrada = total;
+	$scope.totalEntrada = total;
 	};
+
 	var totais = function(arrayValores) {
 		$scope.somarEntrada(arrayValores);
 		$scope.somarSaida(arrayValores);
@@ -66,6 +67,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 	$scope.salvar = function(data, descricao, valor, categoria){
 		$scope.form.push({data: new Date(data), descricao: descricao, valor: valor, categoria: categoria});
 		totais($scope.form);
+		totaisMensais($scope.form);
 	};
 	$scope.excluirConta = function(form){
 		$scope.form= form.filter(function(formulario){
@@ -76,17 +78,6 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 
 	/* funcao para retornar a entrada de determinado mês*/
  	$scope.retornaMes = function(form, mesParam){
- 		/*
- 		funcao para retornar as saidas
-		var mesMoment = moment("01/06/2016", 'DD/MM/YYYY');
- 		console.log(mesMoment.month());
- 		console.log(form[1].data);
- 		console.log(moment(form[1].data, 'DD/MM/YYYY').month() === mesParam);
-		console.log(mesParam);
-		var mesTitulo = moment(form[1].data, 'DD/MM/YYYY').month();
-		console.log(moment(form[1].data, 'DD/MM/YYYY').month() == mesParam);
-		console.log(form.length);
-		*/
  	var total = 0, tamanhoArray = form.length;
  		for (var i = 0; i < tamanhoArray; i++){
  			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesParam) && (!form[i].categoria)){
@@ -94,8 +85,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
  				total += Number(form[i].valor)
  			}
  	 	}
- 	 	console.log(total)
-		return total
+ 	 	$scope.totalMesSaida = total;
  	}
 
 	/* funcao para retornar a entrada de determinado mês*/
@@ -107,10 +97,20 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 				total += Number(form[i].valor)
 			}
 		}
-		console.log(total);
-		return total;
-
+		$scope.totalMesEntrada = total
 	}
+
+
+		var totaisMensais = function(arrayValoresMes) {
+		$scope.retornaMes(arrayValoresMes);
+		$scope.retornaMesEntrada(arrayValoresMes);
+	};
+
+		totaisMensais($scope.form);
+
+
+
+
 
 
 }])

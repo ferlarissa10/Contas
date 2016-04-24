@@ -68,6 +68,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 		$scope.form.push({data: new Date(data), descricao: descricao, valor: valor, categoria: categoria});
 		totais($scope.form);
 		totaisMensais($scope.form);
+		totaisAtuais($scope.form);
 	};
 	$scope.excluirConta = function(form){
 		$scope.form= form.filter(function(formulario){
@@ -75,7 +76,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 			})
  	};
 
-
+/*mes por parametro*/
 	/* funcao para retornar a entrada de determinado mês*/
  	$scope.retornaMes = function(form, mesParam){
  	var total = 0, tamanhoArray = form.length;
@@ -108,9 +109,46 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 
 		totaisMensais($scope.form);
 
+/*mes por parametro*/
+/*mes atual*/
+	$scope.retornaMesAtualSaida = function(form, mesAtual){
+		var total = 0, tamanhoArray = form.length;
+		for (var i = 0; i < tamanhoArray; i++){
+			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesAtual) && (!form[i].categoria)){
+
+				total += Number(form[i].valor)
+			}
+		}
+		$scope.totalSaidaAtual = total;
+	}
+
+	/* funcao para retornar a entrada de determinado mês*/
+	$scope.retornaMesAtualEntrada = function(form, mesAtual){
+		var total = 0, tamanhoArray = form.length;
+		for (var i=0; i < tamanhoArray; i++){
+			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesAtual) && (form[i].categoria)){
+
+				total += Number(form[i].valor)
+			}
+		}
+		$scope.totalEntradaAtual = total;
+	}
 
 
+	var totaisAtuais = function(arrayValoresAtuais) {
+		$scope.retornaMesAtualSaida(arrayValoresAtuais);
+		$scope.retornaMesAtualEntrada(arrayValoresAtuais);
+	};
 
+	totaisAtuais($scope.form);
+
+	$somarMesAtual = function ($retornaMesAtualSaida,$retornaMesAtualEntrada) {
+		$scope.valorAtual = $retornaMesAtualEntrada - $retornaMesAtualSaida;
+
+		return valorAtual
+	}
+
+	/*mes atual*/
 
 
 }])
