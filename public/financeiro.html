@@ -25,93 +25,128 @@ filter angular: selecionar o mes e mostrar somente o movimento deste mes-->
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-5">
-                        <div class="page-header"> <h3>Cadastre os Lançamentos</h3> </div>
-                        <form novalidate="novalidate" >
+                        <div class="page-header"><h3>Cadastre os Lançamentos</h3></div>
+                        <form novalidate="novalidate">
                             <label class="form-group">
                                 Data:<input type="text" ng-model="data"></input>
                                 Descricao: <input type="text" ng-model="descricao">
                                 Valor: <input type="text" ng-model="valor"></input>
-                                Tipo: <select  class="form-control" ng-model="categoria" id="categoria">
+                                Tipo: <select class="form-control" ng-model="categoria" id="categoria">
                                 <option value="true">Entrada</option>
                                 <option value="false">Saida</option>
                             </select>
                                 <br>
                                 {{categoria}}
                                 </br>
-                                <button ng-click="salvar(data, descricao, valor, categoria)" class="btn btn-success">Salvar
-                                </button></label>
-
+                                <button ng-click="salvar(data, descricao, valor, categoria)" class="btn btn-success">
+                                    Salvar
+                                </button>
+                            </label>
                         </form>
                         </label>
                         <!--{{form | json}}
                         {{nome}}-->
-                    </div>
 
-                    <div class="col-md-5">
-                        <div class="page-header"> <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3>
+                        <div class="page-header">
+                            <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3>
                             trazer um resumo do mês atual
                         </div>
                         <table class="table">
                             <thead>
                             <tr>
+                                <div class="page-header">
+                                    <h1>
+                                        Cadernetinha
+                                        <small>Controle Financeiro</small>
+                                    </h1>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-5">
+                                                    <div class="page-header"><h3>Cadastre os Lançamentos</h3></div>
+                                                    <form novalidate="novalidate">
+                                                        <label class="form-group">
+                                                            Data:<input type="text" ng-model="data"></input>
+                                                            Descricao: <input type="text" ng-model="descricao">
+                                                            Valor: <input type="text" ng-model="valor"></input>
+                                                            Tipo: <select class="form-control" ng-model="categoria"
+                                                                          id="categoria">
+                                                            <option value=E>Entrada</option>
+                                                            <option value=S>Saida</option>
+                                                        </select>
+                                                            <br>
+                                                            {{categoria}}
+                                                            </br>
+                                                            <a ng-click="salvar(data, descricao, valor, categoria)">
+                                                                <span class="glyphicon glyphicon-plus-sign"></span></a></label>
 
-                                <th>
-                                    {{mesParam}}
+                                                    </form>
+                                                    </label>
+                                                    <!--{{form | json}}
+				                                    {{nome}}-->
+                                                </div>
+                <table>
+                <thead>
+                <tr>
+                <th>
+                {{mesParam}}
+                </th>
+                <th>
+                Descrição
+                </th>
+                <th>
+                Valores
+                </th>
+                </tr>
+                </thead>
+            <tbody>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                    Entradas    <!--Totais de todas as entradas lancadas -->
+                </td>
+                <td>
+                    {{totalEntradaAtual | currency}}
+                </td>
+                <td>
 
-                                </th>
-                                <th>
-                                    Descrição
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    #
+                </td>
+                <td>
+                    Saidas
+                </td>
 
-                                </th>
-                                <th>
-                                    Valores
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr >
-                                <td>
-                                    #
-                                </td>
-                                <td>
-                                    Entradas 	<!--Totais de todas as entradas lancadas -->
-                                </td>
-                                <td>
-                                    {{totalEntradaAtual | currency}}
-                                </td>
-                                <td>
+                <td>
+                    {{totalSaidaAtual | currency}}
+                </td>
+            </tr>
+            <tr class="success">
+                <td>
+                    #
+                </td>
+                <td>
+                    Saldo Atual:
+                </td>
+                <td>
+                    Somar as entradas do mês atual{{valorAtual}}
+                </td>
+                <td>
 
-                                </td>
-                            </tr>
-                            <tr >
-                                <td>
-                                    #
-                                </td>
-                                <td>
-                                    Saidas
-                                </td>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-                                <td>
-                                    {{totalSaidaAtual | currency}}
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>
-                                    #
-                                </td>
-                                <td>
-                                    Saldo Atual:
-                                </td>
-                                <td >
-                                    Somar as entradas do mês atual{{valorAtual}}
-                                </td>
-                                <td>
-
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>

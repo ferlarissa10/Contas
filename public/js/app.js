@@ -18,17 +18,17 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 		data: "15/05/2016",
 		descricao: "Album Fotos",
 		valor: 115,
-		categoria: false
+		categoria: 'S'
 	},{
 		data: "15/06/2016",
 		descricao: "Album Fotos",
 		valor: 115,
-		categoria: false
+		categoria: 'S'
 	},{
 		data: "10/05/2016",
 		descricao: "Pagamento",
 		valor: 1000,
-		categoria: true
+		categoria: 'E'
 	}];
 
  	$scope.somarSaida = function(form){
@@ -37,7 +37,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
  		}
  		var total = 0, tamanhoArray = form.length;
  		for (var i = 0; i < tamanhoArray; i++) {
- 			if(!form[i].categoria) {
+ 			if(form[i].categoria == 'S') {
  				total += Number(form[i].valor);
  			}
  		}
@@ -50,7 +50,10 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 		}
 		var total = 0, tamanhoArray = form.length;
 		for (var i = 0; i < tamanhoArray; i++) {
-			if(form[i].categoria) {
+			console.log(typeof form[i].categoria);
+			console.log(form[i].categoria);
+			console.log(form[i].categoria == 'E');
+			if(form[i].categoria == 'E') {
 				total += Number(form[i].valor);
 			}
 		}
