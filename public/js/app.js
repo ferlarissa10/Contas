@@ -54,7 +54,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 				total += Number(form[i].valor);
 			}
 		}
-		$scope.totalEntrada = total;
+	$scope.totalEntrada = total;
 	};
 
 	var totais = function(arrayValores) {
@@ -107,6 +107,10 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 	};
 
 		totaisMensais($scope.form);
+
+
+
+
 
 
 }])

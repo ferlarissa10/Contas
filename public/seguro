@@ -1,52 +1,222 @@
-Mês: <select   ng-model="mesParam" id="mesParam">
-					<option value="0">Janeiro</option>
-					<option value="1">Fevereiro</option>
-					<option value="2">Março</option>
-					<option value="3">Abril</option>
-					<option value="4">Maio</option>
-					<option value="5">Junho</option>
-					<option value="6">Julho</option>
-					<option value="7">Agosto</option>
-					<option value="8">Setembro</option>
-					<option value="9">Outubro</option>
-					<option value="10">Novembro</option>
-					<option value="11">Dezembro</option>
-					</select>
 
-					<button ng-click="retornaMes(form, mesParam)"> Aqui</button>
-					</br></br></br>
+resuminho do mes já mostrar todas as datas do mes atual.
+filter angular: selecionar o mes e mostrar somente o movimento deste mes
+
+    <!DOCTYPE html>
+    <html ng-app="appContas">
+    <meta charset="utf8" />
+    <head>
+    <title>Financas</title>
+    <link href="bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    label{
+    width: 100px;
+    }
+
+    </style>
+    </head>
+    <body>
+    <div class="container-fluid" ng-controller="appContasCrtl">
+    <div class="page-header">
+    <h1>
+    Cadernetinha <small>Controle Financeiro</small>
+    </h1>
+    </div>
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+    <div class="page-header"> <h3>Cadastre os Lançamentos</h3> </div>
+    <form novalidate="novalidate" >
+    <label class="form-group">
+    Data:<input type="text" ng-model="data"></input>
+    Descricao: <input type="text" ng-model="descricao">
+    Valor: <input type="text" ng-model="valor"></input>
+    Tipo: <select  class="form-control" ng-model="categoria" id="categoria">
+    <option value="true">Entrada</option>
+    <option value="false">Saida</option>
+    </select>
+    <br>
+    {{categoria}}
+    </br>
+    <button ng-click="salvar(data, descricao, valor, categoria)" class="btn btn-default"> Salvar</button>
+    </label>
+
+    </form>
+    </label>
+    <!--{{form | json}}
+    {{nome}}-->
+    </div>
+
+    <div class="col-md-5">
+    <div class="page-header"> <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3>
+    trazer um resumo do mês atual
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+
+            <th>
+             {{mesAtual}}
+
+            </th>
+            <th>
+                Descrição
+
+            </th>
+            <th>
+                Valores
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr >
+            <td>
+            #
+            </td>
+            <td>
+            Entradas 	<!--Totais de todas as entradas lancadas -->
+            </td>
+            <td>
+            {{totalEntrada | currency}}
+            </td>
+            <td>
+
+            </td>
+        </tr>
+        <tr >
+            <td>
+            #
+            </td>
+            <td>
+            Saidas
+            </td>
+
+            <td>
+            {{totalSaida | currency}}
+            </td>
+        </tr>
+        <tr class="success">
+            <td>
+            #
+            </td>
+            <td>
+            Saldo Atual:
+            </td>
+            <td >
+            Somar as entradas do mês atual
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    </div>
+    <!--
+    <button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
+    -->
+    <!-- tabela com todas as entradas -->
+    <div class="container-fluid">
+    <div class="row">
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">
+        Lançamentos
+    </h3>Busque o
+    <!--Menu para selecionar o mes para  -->
+    Mês: <select id="mesParam">
+    <option value="0">Janeiro</option>
+    <option value="1">Fevereiro</option>
+    <option value="2">Março</option>
+    <option value="3">Abril</option>
+    <option value="4">Maio</option>
+    <option value="5">Junho</option>
+    <option value="6">Julho</option>
+    <option value="7">Agosto</option>
+    <option value="8">Setembro</option>
+    <option value="9">Outubro</option>
+    <option value="10">Novembro</option>
+    <option value="11">Dezembro</option>
+    </select>
+    <button class="btn btn-default" ng-click=""> Buscar</button>
+    <button class="btn btn-default" ng-click="retornaMes(form, mesParam)"> Saidas</button>
+    Saidas:{{totalMesSaida | currency}}
+    <button class="btn btn-default" ng-click="retornaMesEntrada(form, mesParam)"> Entradas</button>
+    Entradas: {{totalMesEntrada | currency}}
 
 
+    <!--fim do menu -->
+    </div>
+    <div class="panel-body">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Data
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Valor
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="formulario in form"  >
+            <td>
+                <input type="checkbox" ng-model="formulario.selecionado"/>
+            </td>
+            <td>
+                {{formulario.data | date}}
+            </td>
+            <td>
+                {{formulario.descricao}}
+            </td>
+            <td>
+                {{formulario.valor | currency}}
+            </td>
+            <td>
+                {{formulario.categoria}}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <div class="panel-footer">
+   <button class="btn btn-default" ng-click="excluirConta(form)" > Excluir</button>
+
+    </div>
+    </div>
+    </div>
+    <!--fim da tabela mensal -->
+  </div>
+
+    <script src="angular/angular.min.js">
+    </script>
+    <script src="angular/locale.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/app.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap3/js/bootstrap.min.js"></script>
 
 
-
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="tabbable" id="tabs-962514">
-				<ul class="nav nav-tabs">
-					<li class="active">
-						<a href="#panel-601031" data-toggle="tab">Section 1</a>
-					</li>
-					<li>
-						<a href="#panel-680528" data-toggle="tab">Section 2</a>
-					</li>
-				</ul>
-				<div class="tab-content">
-					<div class="tab-pane active" id="panel-601031">
-						<p>
-							I'm in Section 1.
-						</p>
-					</div>
-					<div class="tab-pane" id="panel-680528">
-						<p>
-							Howdy, I'm in Section 2.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    </body>
+    </html>
 
 

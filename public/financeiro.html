@@ -2,119 +2,118 @@
 <html ng-app="appContas">
 <meta charset="utf8" />
 <head>
-	<title>Financas</title>
-	<link href="bootstrap3/css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css">
-	label{
-		width: 100px;
-	}
-
-	</style>
-	</head>
+    <title>Financas</title>
+    <link href="bootstrap3/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        label{
+            width: 100px;
+        }
+    </style>
+</head>
 <body>
 <div class="container-fluid" ng-controller="appContasCrtl">
-			<div class="page-header">
-				<h1>
-					Cadernetinha <small>Controle Financeiro</small>
-				</h1>
-			</div>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="row">
-                <div class="col-md-1"></div>
-				<div class="col-md-5">
-				<div class="page-header"> <h3>Cadastre os Lançamentos</h3> </div>
-				<form novalidate="novalidate" >
-					<label class="form-group">
-					Data:<input type="text" ng-model="data"></input>
-					Descricao: <input type="text" ng-model="descricao">
-					Valor: <input type="text" ng-model="valor"></input>
-					Tipo: <select  class="form-control" ng-model="categoria" id="categoria">
-					<option value="true">Entrada</option>
-					<option value="false">Saida</option>
-					</select>
-					<br>
-					{{categoria}}
-					</br>
-					<a ng-click="salvar(data, descricao, valor, categoria)" > <span class="glyphicon glyphicon-plus-sign"></span></a></label>
-					
-				</form>
-				</label>
-				<!--{{form | json}} 
-				{{nome}}-->	
-				</div>
+    <div class="page-header">
+        <h1>
+            Cadernetinha <small>Controle Financeiro</small>
+        </h1>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5">
+                        <div class="page-header"> <h3>Cadastre os Lançamentos</h3> </div>
+                        <form novalidate="novalidate" >
+                            <label class="form-group">
+                                Data:<input type="text" ng-model="data"></input>
+                                Descricao: <input type="text" ng-model="descricao">
+                                Valor: <input type="text" ng-model="valor"></input>
+                                Tipo: <select  class="form-control" ng-model="categoria" id="categoria">
+                                <option value="true">Entrada</option>
+                                <option value="false">Saida</option>
+                            </select>
+                                <br>
+                                {{categoria}}
+                                </br>
+                                <a ng-click="salvar(data, descricao, valor, categoria)" > <span class="glyphicon glyphicon-plus-sign"></span></a></label>
 
-				<div class="col-md-5">
-				<div class="page-header"> <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3> 
-                trazer um resumo do mês atual
-				</div>
-				<table class="table">
-						<thead>
-							<tr>
-								
-								<th>
-								 {{mesParam}}
+                        </form>
+                        </label>
+                        <!--{{form | json}}
+                        {{nome}}-->
+                    </div>
 
-								</th>
-								<th>
-									Descrição
+                    <div class="col-md-5">
+                        <div class="page-header"> <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3>
+                            trazer um resumo do mês atual
+                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
 
-								</th>
-								<th>
-									Valores
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr >
-								<td>
-								#
-								</td>
-								<td>
-								Entradas 	<!--Totais de todas as entradas lancadas -->
-								</td>
-								<td>
-								{{totalEntrada | currency}}
-								</td>
-								<td>
-								
-								</td>
-							</tr>
-							<tr >
-								<td>
-								#
-								</td>
-								<td>
-								Saidas
-								</td>
+                                <th>
+                                    {{mesParam}}
 
-								<td>
-								{{totalSaida | currency}}
-								</td>
-							</tr>
-							<tr class="success">
-								<td>
-								#
-								</td>
-								<td>
-								Saldo Atual:
-								</td>
-								<td >
-								Somar as entradas do mês atual
-								</td>
-								<td>
-								
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-   <!-- Modal funcionando kkkkk-->
+                                </th>
+                                <th>
+                                    Descrição
+
+                                </th>
+                                <th>
+                                    Valores
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr >
+                                <td>
+                                    #
+                                </td>
+                                <td>
+                                    Entradas 	<!--Totais de todas as entradas lancadas -->
+                                </td>
+                                <td>
+                                    {{totalEntrada | currency}}
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            <tr >
+                                <td>
+                                    #
+                                </td>
+                                <td>
+                                    Saidas
+                                </td>
+
+                                <td>
+                                    {{totalSaida | currency}}
+                                </td>
+                            </tr>
+                            <tr class="success">
+                                <td>
+                                    #
+                                </td>
+                                <td>
+                                    Saldo Atual:
+                                </td>
+                                <td >
+                                    Somar as entradas do mês atual
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal funcionando kkkkk-->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -150,17 +149,17 @@
                     </div>
 
 
-        </div>
-    </div>
+                </div>
+            </div>
 
-    <!-- Fim do Modal-->
-</div>
-<!-- 
-<button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
--->
-    <!-- tabela com todas as entradas -->
-    <div class="container-fluid">
-        <div class="row">
+            <!-- Fim do Modal-->
+        </div>
+        <!--
+        <button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
+        -->
+        <!-- tabela com todas as entradas -->
+        <div class="container-fluid">
+            <div class="row">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -210,7 +209,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr ng-repeat="formulario in form | filter:{data: mesParam}" >
+                            <tr ng-repeat="formulario in form" >
                                 <td>
                                     <input type="checkbox" ng-model="formulario.selecionado"/>
                                 </td>
@@ -238,20 +237,21 @@
 
                     </div>
                 </div>
-    </div>
-<!--fim da tabela mensal -->
-</div>
+            </div>
+            <!--fim da tabela mensal -->
+        </div>
 
-<script src="angular/angular.min.js">
-</script>
-<script src="angular/locale.js"></script>
-<script src="js/moment.js"></script>
-<script src="js/app.js"></script>
- <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
- <!-- Include all compiled plugins (below), or include individual files as needed -->
- <script src="bootstrap3/js/bootstrap.min.js"></script>
+        <script src="angular/angular.min.js">
+        </script>
+        <script src="angular/locale.js"></script>
+        <script src="js/moment.js"></script>
+        <script src="js/app.js"></script>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="bootstrap3/js/bootstrap.min.js"></script>
 
 
 </body>
 </html>
+Status
