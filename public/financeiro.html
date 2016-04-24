@@ -22,7 +22,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="row">
-				<div class="col-md-6">
+                <div class="col-md-1"></div>
+				<div class="col-md-5">
 				<div class="page-header"> <h3>Cadastre os Lançamentos</h3> </div>
 				<form novalidate="novalidate" >
 					<label class="form-group">
@@ -43,9 +44,10 @@
 				<!--{{form | json}} 
 				{{nome}}-->	
 				</div>
-				<div class="col-md-6">
-				<div class="page-header"> <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3> 
 
+				<div class="col-md-5">
+				<div class="page-header"> <h3>Lançamentos<h4>{{dataDiaria}}</h4></h3> 
+                trazer um resumo do mês atual
 				</div>
 				<table class="table">
 						<thead>
@@ -99,7 +101,7 @@
 								Saldo Atual:
 								</td>
 								<td >
-								{{retornaMes}}
+								Somar as entradas do mês atual
 								</td>
 								<td>
 								
@@ -107,117 +109,137 @@
 							</tr>
 						</tbody>
 					</table>
-					Mês: <select ng-model="mesParam" id="mesParam">
-					<option value="0">Janeiro</option>
-					<option value="1">Fevereiro</option>
-					<option value="2">Março</option>
-					<option value="3">Abril</option>
-					<option value="4">Maio</option>
-					<option value="5">Junho</option>
-					<option value="6">Julho</option>
-					<option value="7">Agosto</option>
-					<option value="8">Setembro</option>
-					<option value="9">Outubro</option>
-					<option value="10">Novembro</option>
-					<option value="11">Dezembro</option>
-					</select>
-
-					<button ng-click="retornaMes(form, mesParam)"> Aqui</button>
-					</br></br></br>
-					<button ng-click="retornaMesEntrada(form, mesParam)"> here</button>
-					</br></br></br>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+   <!-- Modal funcionando kkkkk-->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <a id="modal-254539" href="#modal-container-254539" role="button" class="btn" data-toggle="modal">Relatorio Mensal</a>
+
+                <div class="modal fade" id="modal-container-254539" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                    Relatorio
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <!-- corpo modal-->
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Fechar
+                                </button>
+                                <button type="button" class="btn btn-primary">
+                                    Imprimir
+                                    <!-- ver como fazer uma versao em pdf :) -->
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+        </div>
+    </div>
+
+    <!-- Fim do Modal-->
+</div>
 <!-- 
 <button ng-click="retornaMes(form, '5')">AKI LOKURA</button>
 -->
-						<table class="table">
-						<thead>
-							<tr>
-								<th>
-									#
-								</th>
-								<th>
-									Data
-								</th>
-								<th>
-									Descrição
-								</th>
-								<th>
-									Valor
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr ng-repeat="formulario in form" >
-								<td>
-									<input type="checkbox" ng-model="formulario.selecionado"/>
-								</td>
-								<td>
-								{{formulario.data | date}}
-								</td>
-								<td>
-								{{formulario.descricao}}
-								</td>
-								<td>
-								{{formulario.valor | currency}}
-								</td>
-								<td>
-								{{formulario.categoria}}
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
-					<a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>
+    <!-- tabela com todas as entradas -->
+    <div class="container-fluid">
+        <div class="row">
 
-	<!-- Modal funcionando kkkkk-->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<a id="modal-254539" href="#modal-container-254539" role="button" class="btn" data-toggle="modal">Relatorio Mensal</a>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Lançamentos
+                        </h3>Busque o
+                        <!--Menu para selecionar o mes para  -->
+                        Mês: <select ng-model="mesParam" id="mesParam">
+                        <option value="0">Janeiro</option>
+                        <option value="1">Fevereiro</option>
+                        <option value="2">Março</option>
+                        <option value="3">Abril</option>
+                        <option value="4">Maio</option>
+                        <option value="5">Junho</option>
+                        <option value="6">Julho</option>
+                        <option value="7">Agosto</option>
+                        <option value="8">Setembro</option>
+                        <option value="9">Outubro</option>
+                        <option value="10">Novembro</option>
+                        <option value="11">Dezembro</option>
+                    </select>
+                        <button ng-click=""> Buscar</button>
+                        <button ng-click="retornaMes(form, mesParam)"> Saidas</button>
+                        Saidas:{{totalMesSaida | currency}}
+                        <button ng-click="retornaMesEntrada(form, mesParam)"> Entradas</button>
+                        Entradas: {{totalMesEntrada | currency}}
 
-				<div class="modal fade" id="modal-container-254539" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
 
-								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <!--fim do menu -->
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Data
+                                </th>
+                                <th>
+                                    Descrição
+                                </th>
+                                <th>
+                                    Valor
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="formulario in form | filter:{data: mesParam}" >
+                                <td>
+                                    <input type="checkbox" ng-model="formulario.selecionado"/>
+                                </td>
+                                <td>
+                                    {{formulario.data | date}}
+                                </td>
+                                <td>
+                                    {{formulario.descricao}}
+                                </td>
+                                <td>
+                                    {{formulario.valor | currency}}
+                                </td>
+                                <td>
+                                    {{formulario.categoria}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <a ng-click="excluirConta(form)" class="glyphicon glyphicon-remove-circle"></a>
+                        <a ng-click="somarSaida(form)" class="glyphicon glyphicon-wrench"></a>
 
-								</button>
-								<h4 class="modal-title" id="myModalLabel">
-									Relatorio
-								</h4>
-							</div>
-							<div class="modal-body">
-								<!-- corpo modal-->
-							</div>
-							<div class="modal-footer">
 
-								<button type="button" class="btn btn-default" data-dismiss="modal">
-									Fechar
-								</button>
-								<button type="button" class="btn btn-primary">
-									Imprimir
-									<!-- ver como fazer uma versao em pdf :) -->
-								</button>
-							</div>
-						</div>
+                    </div>
+                    <div class="panel-footer">
 
-					</div>
-
-				</div>
-
-			</div>
-		</div>
-	</div>
-	<!-- Fim do Modal-->
-
+                    </div>
+                </div>
+    </div>
+<!--fim da tabela mensal -->
 </div>
 
 <script src="angular/angular.min.js">
