@@ -46,6 +46,12 @@
                 {{nome}}-->
          </div>
         <div class="col-md-6">
+
+            <div class="page-header">
+                <h3>
+                    Como está seu mês? <small>Controle Financeiro</small>
+                </h3>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -69,7 +75,7 @@
                         Entradas    <!--Totais de todas as entradas lancadas -->
                     </td>
                     <td>
-                        {{totalEntradaAtual | currency}}
+                        {{totalMesEntrada | currency}}
                     </td>
                     <td>
 
@@ -84,7 +90,7 @@
                     </td>
 
                     <td>
-                        {{totalSaidaAtual | currency}}
+                        {{totalMesSaida | currency}}
                     </td>
                 </tr>
                 <tr class="success">
@@ -182,7 +188,7 @@
                             <option value="11">Dezembro</option>
                         </select>
                             <br>
-                            <button ng-click="" class="btn btn-default"> Buscar</button>
+                            <button ng-click="retornaLancMes(form, mesParam)" class="btn btn-default"> Buscar</button>
                             <button ng-click="retornaMes(form, mesParam)" class="btn btn-default"> Saidas</button>
 
                             <button ng-click="retornaMesEntrada(form, mesParam)" class="btn btn-default"> Entradas</button>
@@ -210,21 +216,21 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="formulario in form" >
+                                <tr ng-repeat="lancamentos in lancMes" >
                                     <td>
                                         <input type="checkbox" ng-model="formulario.selecionado"/>
                                     </td>
                                     <td>
-                                        {{formulario.data | date}}
+                                        {{lancamentos.data | date}}
                                     </td>
                                     <td>
-                                        {{formulario.descricao}}
+                                        {{lancamentos.descricao}}
                                     </td>
                                     <td>
-                                        {{formulario.valor | currency}}
+                                        {{lancamentos.valor | currency}}
                                     </td>
                                     <td>
-                                        {{formulario.categoria}}
+                                        {{lancamentos.categoria}}
                                     </td>
                                 </tr>
                                 </tbody>
