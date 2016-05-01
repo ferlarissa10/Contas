@@ -5,7 +5,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 		$scope.somarSaida($scope.form);
 	});*/
 
-	moment.locale('pt');
+	moment.locale('pt-BR');
 	$scope.totalEntrada = 0;
 	$scope.totalSaida = 0;
 
@@ -50,9 +50,9 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 		}
 		var total = 0, tamanhoArray = form.length;
 		for (var i = 0; i < tamanhoArray; i++) {
-			console.log(typeof form[i].categoria);
+			/*console.log(typeof form[i].categoria);
 			console.log(form[i].categoria);
-			console.log(form[i].categoria == 'E');
+			console.log(form[i].categoria == 'E');*/
 			if(form[i].categoria == 'E') {
 				total += Number(form[i].valor);
 			}
@@ -68,23 +68,42 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 	totais($scope.form);
 
 	$scope.salvar = function(data, descricao, valor, categoria){
-		$scope.form.push({data: new Date(data), descricao: descricao, valor: valor, categoria: categoria});
+		$scope.form.push({data: moment(data,"DD/MM/YYYY").format("DD/MM/YYYY"),
+				descricao: descricao, valor: valor, categoria: categoria});
 		totais($scope.form);
 		totaisMensais($scope.form);
-		totaisAtuais($scope.form);
-	};
-	$scope.excluirConta = function(form){
-		$scope.form= form.filter(function(formulario){
-			if (!formulario.selecionado) return formulario;
-			})
- 	};
+		console.log($scope.form);
 
+		limpar();
+
+		$scope.retornoSucesso ="Registro Salvo com Sucesso";
+
+	};
+
+	function limpar() {
+		$scope.data = '';
+		$scope.descricao = '';
+		$scope.valor = '';
+		$scope.categoria = '';
+	}
+
+	$scope.excluirConta = function(form){
+		$scope.form = form.filter(function(formulario){
+			if (!formulario.selecionado) return formulario
+		})
+ 	};
+	$scope.excluirLanc = function(lancMes){
+		$scope.lancMes = lancMes.filter(function(formulario){
+			if (!formulario.selecionado) return formulario
+		})
+	};
 /*mes por parametro*/
 	/* funcao para retornar a entrada de determinado mês*/
  	$scope.retornaMes = function(form, mesParam){
  	var total = 0, tamanhoArray = form.length;
  		for (var i = 0; i < tamanhoArray; i++){
- 			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesParam) && (!form[i].categoria)){
+ 			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesParam) &&
+					(form[i].categoria == 'S')){
 
  				total += Number(form[i].valor)
  			}
@@ -92,11 +111,15 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
  	 	$scope.totalMesSaida = total;
  	}
 
+
+
+
 	/* funcao para retornar a entrada de determinado mês*/
 	$scope.retornaMesEntrada = function(form, mesParam){
 		var total = 0, tamanhoArray = form.length;
 		for (var i=0; i < tamanhoArray; i++){
-			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesParam) && (form[i].categoria)){
+			if((moment(form[i].data, 'DD/MM/YYYY').month() == mesParam) &&
+					(form[i].categoria == 'E')){
 
 				total += Number(form[i].valor)
 			}
@@ -124,6 +147,7 @@ app.controller ('appContasCrtl', ['$scope', function($scope){
 				$scope.lancMes.push(form[i]);
 			}
 		}
+
 		}
 
 

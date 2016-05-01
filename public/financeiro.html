@@ -1,5 +1,3 @@
-    <!--resuminho do mes já mostrar todas as datas do mes atual.
-    filter angular: selecionar o mes e mostrar somente o movimento deste mes-->
     <!DOCTYPE html>
     <html ng-app="appContas">
     <meta charset="utf8" />
@@ -22,30 +20,42 @@
         <div class="container-fluid">
     <div class="row">
     <div class="col-md-12">
-        <div class="col-md-6">
+        <div class="col-md-4">
                 <div class="page-header"><h3>Cadastre os Lançamentos</h3></div>
-                <form novalidate="novalidate">
+                <form novalidate="novalidate" name="validFormulario">
                     <label class="form-group">
-                        Data:<input type="text" ng-model="data"></input>
-                        Descricao: <input type="text" ng-model="descricao">
-                        Valor: <input type="text" ng-model="valor"></input>
-                        Tipo: <select class="form-control" ng-model="categoria" id="categoria">
-                        <option value="true">Entrada</option>
-                        <option value="false">Saida</option>
+                        Data:<input type="text" name="data" ng-model="data"
+                        ng-pattern="/^\d{2}/\d{2}/\d{4}$/" ng-required="true"></input>
+                        Descricao: <input type="text" ng-model="descricao" ng-required="true">
+                        Valor: <input type="number" ng-model="valor" ng-required="true"></input>
+                        Tipo: <select class="form-control" ng-model="categoria" id="categoria" ng-required="true">
+                        <option value="E">Entrada</option>
+                        <option value="S">Saida</option>
                     </select>
                         <br>
                         {{categoria}}
                         </br>
-                        <button ng-click="salvar(data, descricao, valor, categoria)" class="btn btn-success">
+                        <button ng-disabled="validFormulario.$invalid" name="salvar"
+                                ng-click="salvar(data, descricao, valor, categoria)"
+                                class="btn btn-success">
                             Salvar
                         </button>
                     </label>
                 </form>
                 </label>
+
+        <div class="alert alert-warning"
+             ng-show="validFormulario.data.$dirty && !retornoSucesso">
+            Preencha todos os campos.
+        </div><div class="alert alert-success" ng-show="retornoSucesso">
+            {{retornoSucesso}}
+        </div>
+
+
                 <!--{{form | json}}
                 {{nome}}-->
          </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
 
             <div class="page-header">
                 <h3>
@@ -75,7 +85,7 @@
                         Entradas    <!--Totais de todas as entradas lancadas -->
                     </td>
                     <td>
-                        {{totalMesEntrada | currency}}
+                          {{totalMesEntrada | currency}}
                     </td>
                     <td>
 
@@ -93,25 +103,56 @@
                         {{totalMesSaida | currency}}
                     </td>
                 </tr>
-                <tr class="success">
-                    <td>
-                        #
-                    </td>
-                    <td>
-                        Saldo Atual:
-                    </td>
-                    <td>
-                        Somar as entradas do mês atual{{valorAtual}}
-                    </td>
-                    <td>
 
-                    </td>
-                </tr>
+
                 </tbody>
             </table>
 
         </div>
+        <div class="col-md-4">
+            <div class="page-header">
+                <h3>Ultimos Lancamentos</h3>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Data
+                    </th>
+                    <th>
+                        Descrição
+                    </th>
+                    <th>
+                        Valor
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="formulario in form" >
+                    <td>
+                        <input type="checkbox" ng-model="formulario.selecionado"/>
+                    </td>
+                    <td>
+                        {{formulario.data}}
+                    </td>
+                    <td>
+                        {{formulario.descricao}}
+                    </td>
+                    <td>
+                        {{formulario.valor | currency}}
+                    </td>
+                    <td>
+                        {{formulario.categoria}}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button ng-click="excluirConta(form)" class="btn btn-danger">Excluir</button>
 
+        </div>
 
 
 
@@ -216,27 +257,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="lancamentos in lancMes" >
+                                <tr ng-repeat="formulario in lancMes" >
                                     <td>
                                         <input type="checkbox" ng-model="formulario.selecionado"/>
                                     </td>
                                     <td>
-                                        {{lancamentos.data | date}}
+                                        {{formulario.data}}
                                     </td>
                                     <td>
-                                        {{lancamentos.descricao}}
+                                        {{formulario.descricao}}
                                     </td>
                                     <td>
-                                        {{lancamentos.valor | currency}}
+                                        {{formulario.valor | currency}}
                                     </td>
                                     <td>
-                                        {{lancamentos.categoria}}
+                                        {{formulario.categoria}}
                                     </td>
                                 </tr>
                                 </tbody>
-                            </table>
-                            <button ng-click="excluirConta(form)" class="btn btn-danger">Excluir</button>
 
+                            </table>
+
+                            <button ng-click="excluirLanc(lancMes)" class="btn btn-danger">Excluir</button>
 
 
                         </div>
